@@ -1,4 +1,4 @@
-package main.Controller;
+package main.DAO;
 
 import main.Model.Juego;
 import main.Model.ViewModel.JuegoVista;
