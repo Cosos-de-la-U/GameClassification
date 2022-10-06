@@ -8,12 +8,12 @@ public class PostgresDriver {
     private static String url = "jdbc:postgresql://localhost:5432/GamesRating";
     private static String user = "user";
     private static String pass = "password";
-    private static String driver = "com.mysql.jdbc.Driver";
+    private static String driver = "org.postgresql.Driver";
 
     public static Connection getConnection(){
         Connection connection = null;
         try{
-            Class.forName("jdbcDriver");
+            Class.forName(driver);
             connection = DriverManager.getConnection(url, user, pass);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
