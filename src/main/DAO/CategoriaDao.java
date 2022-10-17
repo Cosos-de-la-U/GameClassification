@@ -8,18 +8,12 @@ import java.util.List;
 
 import static main.DB.PostgresDriver.getConnection;
 import static main.DB.PostgresDriver.printSQLException;
+import static main.DB.Queries.QueriesCategoria.*;
 
 public class CategoriaDao {
 
-    private static final String INSERT_CATEGORIA = "INSERT INTO categoria" + " (nombreCategoria) VALUES" + "( ? );";
-    private static final String SELECT_ALL_CATEGORIA = "SELECT * FROM categoria;";
-    private static final String SELECT_ID_CATEGORIA = "SELECT * FROM categoria WHERE idCategoria = ?;";
-    private static final String DELETE_CATEGORIA = "DELETE FROM categoria WHERE idCategoria = ?;";
-    private static final String UPDATE_CATEGORIA = "UPDATE categoria SET nombreCategoria = ?;";
-
     public CategoriaDao(){
     }
-
 
     public void insertCategoria(Categoria categoria) throws SQLException {
         System.out.println(INSERT_CATEGORIA);
@@ -47,8 +41,8 @@ public class CategoriaDao {
 
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
-                int idCategoria = rs.getInt("ID");
-                String nombreCategoria = rs.getString("Categoria");
+                int idCategoria = rs.getInt("idCategoria");
+                String nombreCategoria = rs.getString("nombreCategoria");
                 categoria = new Categoria(idCategoria, nombreCategoria);
             }
         } catch (SQLException e) {
@@ -72,8 +66,8 @@ public class CategoriaDao {
 
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
-                int idCategoria = rs.getInt("id");
-                String nombreCategoria = rs.getString("name");
+                int idCategoria = rs.getInt("idCategoria");
+                String nombreCategoria = rs.getString("nombreCategoria");
                 categoria.add(new Categoria(idCategoria, nombreCategoria));
             }
         } catch (SQLException e) {
@@ -88,6 +82,7 @@ public class CategoriaDao {
              PreparedStatement statement = connection.prepareStatement(UPDATE_CATEGORIA);) {
             System.out.println("updated Categoria:"+statement);
             statement.setString(1, categoria.getNombreCategoria());
+            statement.setInt(2, categoria.getIdCategoria());
             rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;

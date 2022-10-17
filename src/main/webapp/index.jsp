@@ -7,10 +7,7 @@
 <body>
 <div class="container mt-4 mx-auto">
     <h1 class="text-3xl font-bold underline ">
-        <%
-            PostgresDriver pd = new PostgresDriver();
-            pd.getConnection();
-        %>
+
     </h1>
 </div>
 </body>

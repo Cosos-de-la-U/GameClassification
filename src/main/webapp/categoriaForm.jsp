@@ -3,39 +3,50 @@
 <%@ include file="common/navigation.jspf" %>
 
 <body>
-    <div class="container mt-4">
-        <div class="card">
-            <div class="card-body">
-                <c:if test="${categoria != null}">
-                <form action="update" method="post">
+    <div class="w-full flex justify-center items-center">
+            <!-- Did get the path-->
+            <c:if test="${categoria != null}">
+                <form action="updateCategoria" method="post" class="bg-white shadow-md rounded mt-4 px-8 pt-6 pb-8 mb-4">
+            </c:if>
+                    <!--Didn't get the path-->
+                <c:if test="${categoria == null}">
+                    <form action="insertCategoria" method="post" class="bg-white shadow-md rounded mt-4 px-8 pt-6 pb-8 mb-4"
+                </c:if>
+
+                <h2>
+                    <!-- Didn't get the path-->
+                    <c:if test="${categoria != null}">
+                    Editar Categoria
                     </c:if>
+                    <!-- Didn get the path-->
                     <c:if test="${categoria == null}">
-                    <form action="insertCategoria" method="post">
-                        </c:if>
-                        <caption>
-                            <h2>
-                                <c:if test="${categoria != null}">
-                                    Edit User
-                                </c:if>
-                                <c:if test="${categoria == null}">
-                                    Add New User
-                                </c:if>
-                            </h2>
-                        </caption>
+                    Agregar Categoria
+                    </c:if>
+                </h2>
 
-                        <c:if test="${categoria != null}">
-                            <input type="hidden" name="Id" value="<c:out value='${categoria.idCategoria}' />" />
-                        </c:if>
-
-                        <fieldset class="form-group">
-                            <label>User Name</label> <input type="text"
-                                                            value="<c:out value='${categoria.nombreCategoria}' />" class="form-control"
-                                                            name="name" required="required">
-                        </fieldset>
-
-                        <button type="submit" class="btn btn-success">Save</button>
-                    </form>
+            <div class="mb-4">
+                <c:if test="${categoria != null}">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="idCategoria" hidden>
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="idCategoria"
+                       value="<c:out value='${categoria.getIdCategoria()}' />"
+                       type="text" placeholder="ID" hidden>
+                </c:if>
             </div>
-        </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="nombreCategoria">
+                   Categoria
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="nombreCategoria"
+                       value="<c:out value='${categoria.getNombreCategoria()}' />"
+                       type="text" placeholder="">
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Guardar
+                </button>
+            </div>
+
+        </form>
     </div>
 </body>

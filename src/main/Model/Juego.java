@@ -4,19 +4,25 @@ public class Juego {
     private int idJuego;
     private String nombreJuego;
     private int idCategoria;
+    private String clasificacion;
     private double precio;
+    private int existencias;
 
-    public Juego(String nombreJuego, int idCategoria, double precio) {
+    public Juego(String nombreJuego, int idCategoria, String clasificacion, double precio, int existencias) {
         this.nombreJuego = nombreJuego;
         this.idCategoria = idCategoria;
+        this.clasificacion = clasificacion;
         this.precio = precio;
+        this.existencias = existencias;
     }
 
-    public Juego(int idJuego, String nombreJuego, int idCategoria, double precio) {
+    public Juego(int idJuego, String nombreJuego, int idCategoria, String clasificacion, double precio, int existencias) {
         this.idJuego = idJuego;
         this.nombreJuego = nombreJuego;
         this.idCategoria = idCategoria;
+        this.clasificacion = clasificacion;
         this.precio = precio;
+        this.existencias = existencias;
     }
 
     public int getIdJuego() {
@@ -49,5 +55,21 @@ public class Juego {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public String getClasificaion() {
+        return clasificacion;
+    }
+
+    public void setClasificaion(String clasificacion) {
+        this.clasificacion = clasificacion;
+    }
+
+    public int getExistencias() {
+        return existencias;
+    }
+
+    public void setExistencias(int existencias) {
+        this.existencias = existencias;
     }
 }
